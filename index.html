@@ -1,228 +1,222 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Valerie Komen Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valerie Komen — Data Analyst</title>
+<meta name="description" content="Valerie Komen — Data Analyst (SQL, Python, Power BI) with a civil engineering background. Nairobi, Kenya — open to remote.">
+<style>
+  :root {
+    --bg: #0f1720;
+    --bg-panel: #16212c;
+    --text: #e8edf2;
+    --text-dim: #9fb0bf;
+    --accent: #4fd1c5;
+    --accent-dim: #2c7a72;
+    --border: #223140;
+    --max-width: 960px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+  header.hero {
+    padding: 96px 0 64px;
+    border-bottom: 1px solid var(--border);
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 14px;
+  }
+  h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 10px; }
+  .subtitle { font-size: 1.15rem; color: var(--text-dim); max-width: 640px; margin-bottom: 28px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary { background: var(--accent); color: #06201d; }
+  .btn-primary:hover { background: #6fe0d5; transform: translateY(-1px); }
+  .btn-outline { border: 1px solid var(--border); color: var(--text); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Valerie Jeruto Komen<br />
-						Portfolio</h1>
-						<p>A Data Analyst skilled in SQL, Power BI, Tableau, Excel and working on Python at the moment. <a href="https://linkedin.com/valeriekomen">@valeriekomen</a>
-						</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 1.5rem; margin-bottom: 24px; }
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Valerie Komen</a>
-					</header>
+  .about p { color: var(--text-dim); max-width: 720px; margin-bottom: 14px; }
+  .about strong { color: var(--text); }
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">This is Massively</a></li>
-							<li><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+  .skills-grid {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .skill-pill {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+  }
 
-				<!-- Main -->
-					<div id="main">
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .project-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .project-tag {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .project-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .project-card p { color: var(--text-dim); font-size: 0.92rem; flex-grow: 1; }
+  .project-card .link-row { margin-top: 16px; font-size: 0.85rem; color: var(--accent); font-weight: 600; }
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<span class="date">March 25, 2025</span>
-									<h2><a href="#">Data Cleaning in SQL<br />
-									</a></h2>
-									<p>In this project we clean data in SQL Server.<br />
-									I remove duplicates, standardize data, Populate null/ blank values and remove unnecessary columns/ rows.
-									</p>
-								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">View Project</a></li>
-								</ul>
-							</article>
+  footer {
+    padding: 48px 0 64px;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+</style>
+</head>
+<body>
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<span class="date">March 27, 2025</span>
-										<h2><a href="https://github.com/Valerie-komen/Data-Exploration">Data Exploration in SQL<br />
-										</a></h2>
-									</header>
-									<a href="https://github.com/Valerie-komen/Data-Exploration" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-									<p>Data Exploration of Covid 19 Dataset in SQL Server.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/Valerie-komen/Data-Exploration" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 12, 2025</span>
-										<h2><a href="#">Tableau Projects<br />
-										</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 18, 2025</span>
-										<h2><a href="#">Movie Correlation<br />
-										With Python</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-									<p>In this project we look at what variables affect the gross revenuee for movies.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 14, 2025</span>
-										<h2><a href="#">Amazon Web Scraper<br />
-										With Python</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-									<p>In this project we scrape data from Amazon to analyze price data for products.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 11, 2017</span>
-										<h2><a href="#">Odio magna<br />
-										sed consectetur</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 7, 2017</span>
-										<h2><a href="#">Augue lorem<br />
-										primis vestibulum</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-							</section>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Data Analyst</div>
+    <h1>Valerie Komen</h1>
+    <p class="subtitle">
+      SQL, Python, and Power BI — with a civil engineering background that shows up as
+      quantitative rigor and a bias toward honest, defensible results over polished-looking ones.
+      Based in Nairobi, Kenya. Open to fully remote roles.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">View Projects</a>
+      <a class="btn btn-outline" href="https://github.com/Valerie-komen" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-outline" href="mailto:valeriekomen@gmail.com">Email</a>
+    </div>
+  </div>
+</header>
 
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
+<section class="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>
+      I started as a <strong>civil engineer</strong> — road construction quality control, cost
+      estimation, project dashboards, contractor performance tracking — and moved into
+      <strong>data analytics</strong> because that work was, underneath the job title, already
+      data work: collecting field data, reconciling inconsistent records, building reports that
+      had to hold up under scrutiny.
+    </p>
+    <p>
+      Every project below is a real, end-to-end pipeline — data cleaning through machine learning
+      through an interactive dashboard — and every one reports honest results, including where a
+      model didn't work as well as hoped. I'd rather show you a real limitation than a polished
+      number I can't defend in an interview.
+    </p>
+  </div>
+</section>
 
-					</div>
+<section class="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <span class="skill-pill">SQL</span>
+      <span class="skill-pill">Python (pandas, scikit-learn)</span>
+      <span class="skill-pill">Excel</span>
+      <span class="skill-pill">Power BI / Interactive Dashboards</span>
+      <span class="skill-pill">Machine Learning</span>
+      <span class="skill-pill">Data Cleaning &amp; Reconciliation</span>
+      <span class="skill-pill">Statistical Analysis</span>
+      <span class="skill-pill">Data Storytelling</span>
+      <span class="skill-pill">Git &amp; Version Control</span>
+    </div>
+  </div>
+</section>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Location</h3>
-								<p><br />
-								Nairobi, Kenya</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(+254) 791-584828</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">valeriekomen@gmail.com</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
+<section class="projects" id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <div class="projects-grid">
 
-									<li><a href="#" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+      <a class="project-card" href="https://github.com/Valerie-komen/Coffee-Sales-Analytics-ML" target="_blank" rel="noopener">
+        <div class="project-tag">SQL · Python · ML · Dashboard</div>
+        <h3>Coffee Sales Analytics &amp; ML</h3>
+        <p>End-to-end pipeline on 1,000 orders — customer segmentation, and a repeat-purchase
+        classifier reported honestly when it didn't beat a naive baseline.</p>
+        <div class="link-row">View on GitHub →</div>
+      </a>
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+      <a class="project-card" href="https://github.com/Valerie-komen/Maji-Ndogo-Water-Access-Analytics" target="_blank" rel="noopener">
+        <div class="project-tag">SQL · Choropleth · ML</div>
+        <h3>Water Access Analytics</h3>
+        <p>Reconciled 4 inconsistent data exports covering 27.6M people; found only 46% have
+        basic water access, and caught a real cross-validation bug along the way.</p>
+        <div class="link-row">View on GitHub →</div>
+      </a>
 
-			</div>
+      <a class="project-card" href="https://github.com/Valerie-komen/Maji-Ndogo-Farm-Yield-Prediction" target="_blank" rel="noopener">
+        <div class="project-tag">Python · Regex · ML Regression</div>
+        <h3>Farm Yield Prediction</h3>
+        <p>Found and fixed two real data bugs before modeling, parsed 10 free-text weather
+        message templates via regex, and predicted crop yield at R² = 0.96.</p>
+        <div class="link-row">View on GitHub →</div>
+      </a>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+      <a class="project-card" href="https://github.com/Valerie-komen/Telco-Customer-Churn-Analysis" target="_blank" rel="noopener">
+        <div class="project-tag">Python · Classification</div>
+        <h3>Telco Churn Prediction</h3>
+        <p>Identified contract length, fiber optic service, and payment method as the strongest
+        churn drivers; built a classifier with stable cross-validated ROC-AUC of 0.845.</p>
+        <div class="link-row">View on GitHub →</div>
+      </a>
 
-	</body>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Let's talk data.</div>
+    <div class="footer-links">
+      <a href="mailto:valeriekomen@gmail.com">valeriekomen@gmail.com</a>
+      <a href="https://github.com/Valerie-komen" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
