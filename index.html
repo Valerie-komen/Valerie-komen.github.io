@@ -5,226 +5,531 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valerie Komen — Data Analyst</title>
 <meta name="description" content="Valerie Komen — Data Analyst (SQL, Python, Power BI) with a civil engineering background. Nairobi, Kenya — open to remote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f1720;
-    --bg-panel: #16212c;
+    --bg: #0b1218;
+    --bg-panel: #121c25;
+    --bg-raised: #172532;
     --text: #e8edf2;
     --text-dim: #9fb0bf;
     --accent: #4fd1c5;
-    --accent-dim: #2c7a72;
-    --border: #223140;
-    --max-width: 960px;
+    --accent-soft: rgba(79, 209, 197, 0.12);
+    --border: #1f2e3b;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    --max-width: 1080px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--sans);
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+  /* faint grid backdrop */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -1;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 70%);
+  }
+  a { color: inherit; }
   .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+  em { font-style: italic; color: var(--accent); }
 
-  header.hero {
-    padding: 96px 0 64px;
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(11, 18, 24, 0.82);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
   }
-  .eyebrow {
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    margin-bottom: 14px;
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .social { display: flex; gap: 14px; }
+  .social a {
+    display: grid; place-items: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    color: var(--text-dim); border: 1px solid var(--border);
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
-  h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 10px; }
-  .subtitle { font-size: 1.15rem; color: var(--text-dim); max-width: 640px; margin-bottom: 28px; }
+  .social a:hover { color: var(--accent); border-color: var(--accent); }
+  .social svg { width: 17px; height: 17px; }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 72px 0 88px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+  .eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-dim); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 22px;
+  }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 7vw, 4.6rem);
+    font-weight: 600; line-height: 1.02; letter-spacing: -0.02em;
+    margin-bottom: 26px;
+  }
+  h1 span { color: var(--accent); }
+  .tagline {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.25;
+    margin-bottom: 18px;
+  }
+  .lede { color: var(--text-dim); font-size: 1.02rem; max-width: 520px; margin-bottom: 34px; }
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: transform 0.15s ease, background 0.15s ease;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border-radius: 6px;
+    text-decoration: none; font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   }
-  .btn-primary { background: var(--accent); color: #06201d; }
-  .btn-primary:hover { background: #6fe0d5; transform: translateY(-1px); }
+  .btn svg { width: 14px; height: 14px; }
+  .btn-primary { background: var(--accent); color: #06201d; box-shadow: 5px 5px 0 rgba(79, 209, 197, 0.22); }
+  .btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 rgba(79, 209, 197, 0.28); }
   .btn-outline { border: 1px solid var(--border); color: var(--text); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.5rem; margin-bottom: 24px; }
-
-  .about p { color: var(--text-dim); max-width: 720px; margin-bottom: 14px; }
-  .about strong { color: var(--text); }
-
-  .skills-grid {
-    display: flex; flex-wrap: wrap; gap: 10px;
-  }
-  .skill-pill {
-    background: var(--bg-panel);
+  .portrait { position: relative; }
+  .portrait-frame {
+    position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(79, 209, 197, 0.28), transparent 55%),
+      radial-gradient(circle at 80% 90%, rgba(127, 140, 255, 0.22), transparent 55%),
+      var(--bg-raised);
     border: 1px solid var(--border);
-    color: var(--text);
-    padding: 8px 16px;
-    border-radius: 999px;
-    font-size: 0.9rem;
+    box-shadow: 18px 18px 0 rgba(255, 255, 255, 0.03);
+  }
+  .portrait-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .chip {
+    position: absolute; display: flex; align-items: center; gap: 8px;
+    background: #f4f7f9; color: #0b1218;
+    padding: 10px 14px; border-radius: 6px;
+    font-size: 0.82rem; font-weight: 600; white-space: nowrap;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+    animation: float 6s ease-in-out infinite;
+  }
+  .chip svg { width: 16px; height: 16px; color: #1f8f85; }
+  .chip-1 { top: 9%; left: -18%; transform: rotate(-4deg); }
+  .chip-2 { top: 52%; right: -12%; transform: rotate(3deg); animation-delay: -2s; }
+  .chip-3 { bottom: 7%; left: -10%; transform: rotate(-2deg); animation-delay: -4s; }
+  @keyframes float { 50% { translate: 0 -8px; } }
+
+  /* ---------- marquee ---------- */
+  .marquee {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: var(--bg-panel); overflow: hidden; padding: 18px 0;
+  }
+  .marquee-track { display: flex; width: max-content; animation: scroll 38s linear infinite; }
+  .marquee-track span {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 500;
+    padding: 0 28px; white-space: nowrap;
+  }
+  .marquee-track span:nth-child(odd) { color: var(--text); }
+  .marquee-track span:nth-child(even) { color: var(--accent); padding: 0; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* ---------- sections ---------- */
+  section { padding: 104px 0; }
+  .section-label {
+    color: var(--accent); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px;
+  }
+  h2 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; letter-spacing: -0.015em;
+    margin-bottom: 40px;
   }
 
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-  }
+  .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; }
+  .about-grid h2 { margin-bottom: 0; }
+  .about-text p { color: var(--text-dim); margin-bottom: 16px; font-size: 1.02rem; }
+  .about-text strong { color: var(--text); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
+  .stat { border-top: 1px solid var(--border); padding-top: 18px; }
+  .stat b { display: block; font-family: var(--serif); font-size: 2.3rem; font-weight: 600; line-height: 1.1; color: var(--accent); }
+  .stat span { color: var(--text-dim); font-size: 0.88rem; }
+
+  /* ---------- projects ---------- */
+  .projects-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+  .projects-head h2 { margin-bottom: 0; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
   .project-card {
+    position: relative;
     background: var(--bg-panel);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 24px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.15s ease, transform 0.15s ease;
+    display: flex; flex-direction: column;
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
+  .project-thumb {
+    position: relative;
+    margin: -24px -24px 20px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    border-radius: 11px 11px 0 0;
+  }
+  .project-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .project-card:hover .project-thumb img { transform: scale(1.05); }
+  .metric {
+    position: absolute; right: 12px; bottom: 12px;
+    background: rgba(11, 18, 24, 0.85); backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 5px 10px; border-radius: 999px;
+    font-size: 0.75rem; font-weight: 600;
+  }
   .project-tag {
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 10px;
+    color: var(--text-dim); font-size: 0.72rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
   }
-  .project-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-  .project-card p { color: var(--text-dim); font-size: 0.92rem; flex-grow: 1; }
-  .project-card .link-row { margin-top: 16px; font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+  .project-card h3 { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; line-height: 1.2; margin-bottom: 10px; }
+  .project-card p { color: var(--text-dim); font-size: 0.93rem; flex-grow: 1; }
+  .link-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);
+    font-size: 0.85rem; font-weight: 600; color: var(--accent);
+  }
+  .link-row svg { width: 18px; height: 18px; transition: transform 0.2s ease; }
+  .project-card:hover .link-row svg { transform: translate(3px, -3px); }
 
-  footer {
-    padding: 48px 0 64px;
-    color: var(--text-dim);
-    font-size: 0.9rem;
+  /* ---------- toolkit ---------- */
+  .toolkit { background: var(--bg-panel); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tool-col { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+  .tool-col svg { width: 28px; height: 28px; color: var(--accent); margin-bottom: 16px; }
+  .tool-col h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin-bottom: 14px; }
+  .tool-col ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .tool-col li {
+    background: var(--bg-raised); border: 1px solid var(--border);
+    padding: 6px 12px; border-radius: 999px; font-size: 0.85rem;
   }
+
+  /* ---------- contact ---------- */
+  .contact { text-align: center; padding: 128px 0 152px; }
+  .contact p.kicker { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 14px; }
+  .contact h2 { font-size: clamp(2.6rem, 7vw, 4.6rem); margin-bottom: 36px; }
+  .contact .cta-row { justify-content: center; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 0 120px; color: var(--text-dim); font-size: 0.88rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   footer a { color: var(--accent); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
-  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
-</style>
-</head>
-<body>
 
-<header class="hero">
+  /* ---------- floating nav ---------- */
+  .dock {
+    position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 30;
+    display: flex; gap: 4px; padding: 6px;
+    background: rgba(18, 28, 37, 0.92); backdrop-filter: blur(12px);
+    border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+  .dock a {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    min-width: 62px; padding: 8px 10px; border-radius: 10px;
+    color: var(--text-dim); text-decoration: none; font-size: 0.68rem; font-weight: 600;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .dock a svg { width: 18px; height: 18px; }
+  .dock a:hover { color: var(--text); }
+  .dock a.active { background: var(--accent-soft); color: var(--accent); }
+
+  /* ---------- reveal on scroll (only when JS is on) ---------- */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .marquee-track, .chip { animation: none; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    .hero { padding: 48px 0 72px; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .portrait { max-width: 360px; margin: 0 auto; width: 82%; }
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .toolkit-grid { grid-template-columns: 1fr; }
+    section { padding: 80px 0; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .chip { font-size: 0.74rem; padding: 8px 10px; }
+    .chip-1 { left: -6%; }
+    .chip-2 { right: -4%; }
+    .chip-3 { left: -4%; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .dock a { min-width: 0; padding: 8px; }
+    .btn { padding: 13px 18px; }
+  }
+</style>
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body id="top">
+
+<header class="topbar">
   <div class="wrap">
-    <div class="eyebrow">Data Analyst</div>
-    <h1>Valerie Komen</h1>
-    <p class="subtitle">
-      SQL, Python, and Power BI — with a civil engineering background that shows up as
-      quantitative rigor and a bias toward honest, defensible results over polished-looking ones.
-      Based in Nairobi, Kenya. Open to fully remote roles.
-    </p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#projects">View Projects</a>
-      <a class="btn btn-outline" href="https://github.com/Valerie-komen" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-outline" href="mailto:valeriekomen@gmail.com">Email</a>
+    <a class="logo" href="#top">Valerie<span>.</span></a>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/valerie-komen-468a93355/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3zM9.5 9.75h3.8v1.5h.06c.53-1 1.83-1.9 3.77-1.9 4.03 0 4.77 2.5 4.77 5.75v5.65h-4v-5c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.95 1.3-1.95 2.66v5.09h-4z"/></svg>
+      </a>
+      <a href="https://github.com/Valerie-komen" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
+      <a href="mailto:valeriekomen@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
     </div>
   </div>
 </header>
 
-<section class="about">
+<main>
+
+<section class="hero" id="home">
   <div class="wrap">
-    <h2>About</h2>
-    <p>
-      I started as a <strong>civil engineer</strong> — road construction quality control, cost
-      estimation, project dashboards, contractor performance tracking — and moved into
-      <strong>data analytics</strong> because that work was, underneath the job title, already
-      data work: collecting field data, reconciling inconsistent records, building reports that
-      had to hold up under scrutiny.
-    </p>
-    <p>
-      Every project below is a real, end-to-end pipeline — data cleaning through machine learning
-      through an interactive dashboard — and every one reports honest results, including where a
-      model didn't work as well as hoped. I'd rather show you a real limitation than a polished
-      number I can't defend in an interview.
-    </p>
+    <div>
+      <div class="eyebrow">Data Analyst · Civil Engineer · Nairobi</div>
+      <h1>Valerie<br><span>Komen.</span></h1>
+      <p class="tagline">Numbers you can <em>defend.</em></p>
+      <p class="lede">
+        SQL, Python, and Power BI — with a civil engineering background that shows up as
+        quantitative rigor and a bias toward honest, defensible results over polished-looking ones.
+        Open to fully remote roles.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:valeriekomen@gmail.com">Contact me
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="btn btn-outline" href="#projects">View projects</a>
+        <a class="btn btn-outline" href="Valerie_Komen_Resume.pdf" target="_blank" rel="noopener">Download CV</a>
+      </div>
+    </div>
+
+    <div class="portrait">
+      <div class="portrait-frame">
+        <img src="images/valerie.jpg" alt="Valerie Komen" width="800" height="1000">
+      </div>
+      <div class="chip chip-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+        SQL · Python · Power BI
+      </div>
+      <div class="chip chip-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M5 20V10l7-6 7 6v10M9 20v-6h6v6"/></svg>
+        Civil Eng → Data
+      </div>
+      <div class="chip chip-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 6-7"/></svg>
+        5 end-to-end projects
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="skills">
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>SQL</span><span>·</span><span>Python</span><span>·</span><span>Power BI</span><span>·</span><span>Excel</span><span>·</span><span>Machine Learning</span><span>·</span><span>Data Cleaning</span><span>·</span><span>Dashboards</span><span>·</span><span>Data Storytelling</span><span>·</span>
+    <span>SQL</span><span>·</span><span>Python</span><span>·</span><span>Power BI</span><span>·</span><span>Excel</span><span>·</span><span>Machine Learning</span><span>·</span><span>Data Cleaning</span><span>·</span><span>Dashboards</span><span>·</span><span>Data Storytelling</span><span>·</span>
+  </div>
+</div>
+
+<section class="about" id="about">
   <div class="wrap">
-    <h2>Skills</h2>
-    <div class="skills-grid">
-      <span class="skill-pill">SQL</span>
-      <span class="skill-pill">Python (pandas, scikit-learn)</span>
-      <span class="skill-pill">Excel</span>
-      <span class="skill-pill">Power BI / Interactive Dashboards</span>
-      <span class="skill-pill">Machine Learning</span>
-      <span class="skill-pill">Data Cleaning &amp; Reconciliation</span>
-      <span class="skill-pill">Statistical Analysis</span>
-      <span class="skill-pill">Data Storytelling</span>
-      <span class="skill-pill">Git &amp; Version Control</span>
+    <div class="about-grid reveal">
+      <div>
+        <div class="section-label">About</div>
+        <h2>From road sites to <em>datasets.</em></h2>
+      </div>
+      <div class="about-text">
+        <p>
+          I started as a <strong>civil engineer</strong> — road construction quality control, cost
+          estimation, project dashboards, contractor performance tracking — and moved into
+          <strong>data analytics</strong> because that work was, underneath the job title, already
+          data work: collecting field data, reconciling inconsistent records, building reports that
+          had to hold up under scrutiny.
+        </p>
+        <p>
+          Every project below is a real, end-to-end pipeline — data cleaning through machine learning
+          through an interactive dashboard — and every one reports honest results, including where a
+          model didn't work as well as hoped. I'd rather show you a real limitation than a polished
+          number I can't defend in an interview.
+        </p>
+      </div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b>5</b><span>End-to-end projects</span></div>
+      <div class="stat"><b>27.6M</b><span>People's water access analysed</span></div>
+      <div class="stat"><b>0.96</b><span>R² on crop yield prediction</span></div>
+      <div class="stat"><b>0.845</b><span>ROC-AUC on churn model</span></div>
     </div>
   </div>
 </section>
 
 <section class="projects" id="projects">
   <div class="wrap">
-    <h2>Projects</h2>
+    <div class="projects-head reveal">
+      <div>
+        <div class="section-label">Selected work</div>
+        <h2>Projects that <em>hold up.</em></h2>
+      </div>
+      <a class="btn btn-outline" href="https://github.com/Valerie-komen" target="_blank" rel="noopener">All repos on GitHub</a>
+    </div>
     <div class="projects-grid">
 
-      <a class="project-card" href="https://github.com/Valerie-komen/Coffee-Sales-Analytics-ML" target="_blank" rel="noopener">
+      <a class="project-card reveal" href="https://github.com/Valerie-komen/Coffee-Sales-Analytics-ML" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="images/coffee-ml.svg" alt="Coffee cup beside customer segmentation clusters" width="640" height="360" loading="lazy"><span class="metric">Silhouette 0.56</span></div>
         <div class="project-tag">SQL · Python · ML · Dashboard</div>
         <h3>Coffee Sales Analytics &amp; ML</h3>
         <p>End-to-end pipeline on 1,000 orders — customer segmentation, and a repeat-purchase
         classifier reported honestly when it didn't beat a naive baseline.</p>
-        <div class="link-row">View on GitHub →</div>
+        <div class="link-row">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </a>
 
-      <a class="project-card" href="https://github.com/Valerie-komen/Maji-Ndogo-Water-Access-Analytics" target="_blank" rel="noopener">
+      <a class="project-card reveal" href="https://github.com/Valerie-komen/Maji-Ndogo-Water-Access-Analytics" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="images/water-access.svg" alt="Water drop over a province map shaded by water access" width="640" height="360" loading="lazy"><span class="metric">27.6M people</span></div>
         <div class="project-tag">SQL · Choropleth · ML</div>
         <h3>Water Access Analytics</h3>
         <p>Reconciled 4 inconsistent data exports covering 27.6M people; found only 46% have
         basic water access, and caught a real cross-validation bug along the way.</p>
-        <div class="link-row">View on GitHub →</div>
+        <div class="link-row">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </a>
 
-      <a class="project-card" href="https://github.com/Valerie-komen/Maji-Ndogo-Farm-Yield-Prediction" target="_blank" rel="noopener">
+      <a class="project-card reveal" href="https://github.com/Valerie-komen/Maji-Ndogo-Farm-Yield-Prediction" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="images/farm-yield.svg" alt="Farm fields with a predicted versus actual regression line" width="640" height="360" loading="lazy"><span class="metric">R² 0.96</span></div>
         <div class="project-tag">Python · Regex · ML Regression</div>
         <h3>Farm Yield Prediction</h3>
         <p>Found and fixed two real data bugs before modeling, parsed 10 free-text weather
         message templates via regex, and predicted crop yield at R² = 0.96.</p>
-        <div class="link-row">View on GitHub →</div>
+        <div class="link-row">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </a>
 
-      <a class="project-card" href="https://github.com/Valerie-komen/Telco-Customer-Churn-Analysis" target="_blank" rel="noopener">
+      <a class="project-card reveal" href="https://github.com/Valerie-komen/Telco-Customer-Churn-Analysis" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="images/telco-churn.svg" alt="Cell tower signal reaching customers, some churning" width="640" height="360" loading="lazy"><span class="metric">ROC-AUC 0.845</span></div>
         <div class="project-tag">Python · Classification</div>
         <h3>Telco Churn Prediction</h3>
         <p>Identified contract length, fiber optic service, and payment method as the strongest
         churn drivers; built a classifier with stable cross-validated ROC-AUC of 0.845.</p>
-        <div class="link-row">View on GitHub →</div>
+        <div class="link-row">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </a>
-      
-      <a class="project-card" href="https://github.com/Valerie-komen/coffee-sales-excel-dashboard" target="_blank" rel="noopener">
+
+      <a class="project-card reveal" href="https://github.com/Valerie-komen/coffee-sales-excel-dashboard" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="images/coffee-excel.svg" alt="Spreadsheet pivot table and bar chart with coffee beans" width="640" height="360" loading="lazy"><span class="metric">1,000 orders</span></div>
         <div class="project-tag">Excel · PivotTables · Dashboard</div>
         <h3>Coffee Sales Analytics (Excel)</h3>
         <p>Interactive Excel dashboard analyzing 1,000 orders — sales trends by product, country,
         and top customers, built entirely with PivotTables and PivotCharts.</p>
-        <div class="link-row">View on GitHub →</div>
+        <div class="link-row">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </a>
-      
+
     </div>
   </div>
 </section>
 
+<section class="toolkit" id="skills">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label">Toolkit</div>
+      <h2>What I work <em>with.</em></h2>
+    </div>
+    <div class="toolkit-grid">
+      <div class="tool-col reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>
+        <h3>Languages &amp; tools</h3>
+        <ul><li>SQL</li><li>Python</li><li>pandas</li><li>scikit-learn</li><li>Excel</li><li>Power BI</li><li>Plotly</li><li>Git &amp; GitHub</li></ul>
+      </div>
+      <div class="tool-col reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 6-7"/></svg>
+        <h3>Techniques</h3>
+        <ul><li>Data cleaning</li><li>Multi-source reconciliation</li><li>EDA</li><li>Classification</li><li>Regression</li><li>Feature engineering</li><li>Cross-validation</li></ul>
+      </div>
+      <div class="tool-col reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 3.8 8.5 9 9 5.2-.5 9-4 9-9V7z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h3>How I work</h3>
+        <ul><li>Honest reporting</li><li>Statistical rigor</li><li>Data storytelling</li><li>Interactive dashboards</li><li>Field-data experience</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <p class="kicker">Have data that needs to make sense?</p>
+    <h2>Let's talk <em>data.</em></h2>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:valeriekomen@gmail.com">Email me
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <a class="btn btn-outline" href="Valerie_Komen_Resume.pdf" target="_blank" rel="noopener">Download CV</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/valerie-komen-468a93355/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline" href="https://github.com/Valerie-komen" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
 <footer>
   <div class="wrap">
-    <div>Let's talk data.</div>
+    <div>© <span id="year">2026</span> Valerie Komen · Nairobi, Kenya</div>
     <div class="footer-links">
-      <a href="mailto:valeriekomen@gmail.com">valeriekomen@gmail.com</a>
+      <a href="mailto:valeriekomen@gmail.com">valeriekomen@gmail.com</a> ·
+      <a href="https://www.linkedin.com/in/valerie-komen-468a93355/" target="_blank" rel="noopener">LinkedIn</a> ·
       <a href="https://github.com/Valerie-komen" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </footer>
+
+<nav class="dock" aria-label="Sections">
+  <a href="#home" class="active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 3l9 8v10h-6v-6H9v6H3z"/></svg>Home</a>
+  <a href="#about">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>About</a>
+  <a href="#projects">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>Work</a>
+  <a href="#skills">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 6-7"/></svg>Skills</a>
+  <a href="#contact">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a>
+</nav>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Fade sections in as they scroll into view
+  const revealer = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("in"); revealer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => revealer.observe(el));
+
+  // Highlight the dock item for the section in view
+  const links = document.querySelectorAll(".dock a");
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
+</script>
 
 </body>
 </html>

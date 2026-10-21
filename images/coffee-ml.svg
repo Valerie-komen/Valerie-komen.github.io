@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Coffee cup beside customer segmentation clusters">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a1a12"/>
+      <stop offset="1" stop-color="#4a2c1b"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3e6d8"/>
+      <stop offset="1" stop-color="#d9c3ab"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.3" cy="0.6" r="0.6">
+      <stop offset="0" stop-color="#c8834a" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#c8834a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <rect width="640" height="360" fill="url(#glow)"/>
+  <!-- grid -->
+  <g stroke="#ffffff" stroke-opacity="0.06">
+    <path d="M330 60V300M390 60V300M450 60V300M510 60V300M570 60V300"/>
+    <path d="M330 60H590M330 120H590M330 180H590M330 240H590M330 300H590"/>
+  </g>
+  <!-- clusters -->
+  <g fill="#4fd1c5">
+    <circle cx="370" cy="110" r="7"/><circle cx="392" cy="92" r="5"/><circle cx="398" cy="124" r="6"/>
+    <circle cx="352" cy="132" r="5"/><circle cx="414" cy="104" r="4"/><circle cx="380" cy="140" r="4"/>
+  </g>
+  <g fill="#f0a35e">
+    <circle cx="500" cy="150" r="7"/><circle cx="526" cy="138" r="5"/><circle cx="520" cy="172" r="6"/>
+    <circle cx="482" cy="170" r="5"/><circle cx="545" cy="160" r="4"/><circle cx="505" cy="190" r="4"/>
+  </g>
+  <g fill="#e8d5c0">
+    <circle cx="420" cy="240" r="7"/><circle cx="446" cy="226" r="5"/><circle cx="440" cy="262" r="6"/>
+    <circle cx="398" cy="258" r="5"/><circle cx="466" cy="250" r="4"/><circle cx="414" cy="276" r="4"/>
+  </g>
+  <g fill="none" stroke-width="1.5" stroke-dasharray="4 5">
+    <circle cx="384" cy="118" r="48" stroke="#4fd1c5" stroke-opacity="0.6"/>
+    <circle cx="512" cy="164" r="50" stroke="#f0a35e" stroke-opacity="0.6"/>
+    <circle cx="432" cy="250" r="50" stroke="#e8d5c0" stroke-opacity="0.5"/>
+  </g>
+  <!-- steam -->
+  <g fill="none" stroke="#f3e6d8" stroke-opacity="0.45" stroke-width="4" stroke-linecap="round">
+    <path d="M140 120c-14-18 14-30 0-50"/>
+    <path d="M170 112c-14-18 14-30 0-50"/>
+    <path d="M200 120c-14-18 14-30 0-50"/>
+  </g>
+  <!-- saucer -->
+  <ellipse cx="170" cy="282" rx="118" ry="20" fill="#1c110b" opacity="0.6"/>
+  <ellipse cx="170" cy="274" rx="112" ry="18" fill="#e3cfb9"/>
+  <!-- cup -->
+  <path d="M90 148h160l-14 108a24 24 0 0 1-24 20h-84a24 24 0 0 1-24-20z" fill="url(#cup)"/>
+  <path d="M250 170c38 0 42 56 0 62" fill="none" stroke="#e3cfb9" stroke-width="14" stroke-linecap="round"/>
+  <ellipse cx="170" cy="148" rx="80" ry="14" fill="#6b3d22"/>
+  <ellipse cx="170" cy="146" rx="70" ry="10" fill="#8a5232"/>
+  <path d="M150 146c10-8 30-8 40 0c-10 6-30 6-40 0z" fill="#d9a77a" opacity="0.8"/>
+</svg>
